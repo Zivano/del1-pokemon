@@ -8,14 +8,40 @@
 <body>
     <h1>The Pokedex</h1>
 
-   <!-- planlegge å sette opp rullgarding liste her for filtrering-->
+ 
 
 
     <!-- knapp for å lage ny pokemon -->
     <button onclick="developNewPokemon()">Develop new Pokémon</button>
 
-    <!-- container for pokemonkort -->
-    <div id="selectedPokemon" class="pokemon-container"></div>
+    <!-- container for pokemonkort-->
+
+     <div id="selectedPokemon" class="pokemon-container"></div>
+
+
+       <!--Rullgarding liste her for filtrering-->
+     <select id="typeDropdown" class="type-dropdown" onchange="filterPokemon()">
+        <option value="">All</option>
+        <option value="Normal">Normal</option>
+        <option value="Fire">Fire</option>
+        <option value="Water">Water</option>
+        <option value="Electric">Electric</option>
+        <option value="Grass">Grass</option>
+        <option value="Ice">Ice</option>
+        <option value="Fighting">Fighting</option>
+        <option value="Poison">Poison</option>
+        <option value="Ground">Ground</option>
+        <option value="Flying">Flying</option>
+        <option value="Psychic">Psychic</option>
+        <option value="Bug">Bug</option>
+        <option value="Rock">Rock</option>
+        <option value="Ghost">Ghost</option>
+        <option value="Dragon">Dragon</option>
+        <option value="Dark">Dark</option>
+        <option value="Steel">Steel</option>
+        <option value="Fairy">Fairy</option>
+        <option value="Stellar">Stellar</option></select><br/>
+    <button onclick="developNewPokemon()">Develop new Pokémon</button><br/><br/>
 
 
 </body>
