@@ -21,7 +21,6 @@
 
        <!--Rullgarding liste her for filtrering-->
      <select id="typeDropdown" class="type-dropdown" onchange="filterPokemon()">
-        <option value="">All</option>
         <option value="Normal">Normal</option>
         <option value="Fire">Fire</option>
         <option value="Water">Water</option>
@@ -41,7 +40,33 @@
         <option value="Steel">Steel</option>
         <option value="Fairy">Fairy</option>
         <option value="Stellar">Stellar</option></select><br/>
+
     <button onclick="developNewPokemon()">Develop new Pokémon</button><br/><br/>
+
+ <div id="pokemonDisplay" class="pokemon-container"></div>
+
+ <div id="selectedPokemon" class="pokemon-container"></div>
+
+ <script>
+window.onload = () => {
+        fetchAndDisplayRandomPokemon("pokemonDisplay");
+      };
+      async function fetchRandomPokemon() {
+        try {
+          const response = await fetch(
+            `https://pokeapi.co/api/v2/pokemon?limit=50`
+          );
+          if (!response.ok) {
+            throw new Error("Failed to fetch random Pokemon");
+          }
+          const data = await response.json();
+          return data.results;
+        } catch (error) {
+          console.error(error);
+        }
+      }
+
+ </script>
 
 
 </body>
