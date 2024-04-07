@@ -84,9 +84,25 @@
           pokemonDisplay.appendChild(card);
         });
       }
+      // lage nytt pokemonkort funksjon
+      function createPokemonCard(name, sprite, type, containerId) {
+        const card = document.createElement("div");
+        card.classList.add("pokemon-card");
+        card.innerHTML = `
+            <h2>${name}</h2>
+            <p>Type: ${type}</p>
+            <img src="${sprite}" alt="Pokemon Sprite" class="pokemon-image">
+            <button onclick="addPokemon('${name}', '${sprite}', '${type}', '${containerId}')">SAVE</button>
+            <button class="delete-button" onclick="deletePokemon(this)">X</button>
+            <button class="edit-button" onclick="editPokemon(this)">Edit</button>
+        `;
+
+        card.style.backgroundColor = getColorForType(type);
+        return card;
+      }
 
 
-      
+
     </script>
   </body>
 </html>
