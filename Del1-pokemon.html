@@ -228,7 +228,49 @@
       }
       
       
+      // trengte hjelp av chatGPT her for å lage nye kort med funksjon, spesifikt funksjonen for å ha defailt bilde av ny pokemon
+      //samt
+      function developNewPokemon() {
+        const newName = prompt("Enter the name for the new Pokémon:");
+        const newType = prompt("Enter the type for the new Pokémon:");
+        if (
+          newName !== null &&
+          newType !== null &&
+          newName.trim() !== "" &&
+          newType.trim() !== ""
+        ) {
+          addPokemon(
+            newName.trim(),
+            "assets/pokeball.jpeg",
+            newType.trim(),
+            "pokemonDisplay"
+          );
+        }
+      }
 
+      // slette pokemonkort funksjon
+      function deletePokemon(button) {
+        const card = button.parentElement;
+        card.remove();
+      }
+
+      //endre/edit kort
+      function editPokemon(button) {
+        const card = button.parentElement;
+        const nameElement = card.querySelector("h2");
+        const typeElement = card.querySelector("p");
+        const currentName = nameElement.innerText;
+        const currentType = typeElement.innerText.substring(6); // Remove "Type: " from the beginning
+        const newName = prompt("Enter new name:", currentName);
+        if (newName !== null && newName.trim() !== "") {
+          nameElement.innerText = newName.trim();
+        }
+        const newType = prompt("Enter new type:", currentType);
+        if (newType !== null && newType.trim() !== "") {
+          typeElement.innerText = `Type: ${newType.trim()}`;
+          card.style.backgroundColor = getColorForType(newType.trim());
+        }
+      }
 
 
     </script>
