@@ -131,7 +131,54 @@
         }
       }
 
-      
+      //Local storage for redigerte(added) pokemon
+      function saveCustomPokemon(customPokemon) {
+        let customPokemons =
+        JSON.parse(localStorage.getItem("customPokemons")) || [];
+        customPokemons.push(customPokemon);
+        localStorage.setItem("customPokemons", JSON.stringify(customPokemons));
+      }
+
+
+      async function displayFilteredPokemons(pokemons, containerId) {
+        const pokemonDisplay = document.getElementById(containerId);
+        pokemonDisplay.innerHTML = "";
+
+        pokemons.forEach((pokemon) => {
+          const card = createPokemonCard(
+            pokemon.name,
+            pokemon.sprite,
+            pokemon.type,
+            containerId
+          );
+          pokemonDisplay.appendChild(card);
+        });
+      }
+
+    
+      function getColorForType(type) {
+        const typeColors = {
+          normal: "lightgray",
+          fire: "orangered",
+          water: "deepskyblue",
+          electric: "gold",
+          grass: "limegreen",
+          ice: "lightblue",
+          fighting: "saddlebrown",
+          poison: "purple",
+          ground: "burlywood",
+          flying: "lightskyblue",
+          psychic: "magenta",
+          bug: "green",
+          rock: "gray",
+          ghost: "darkviolet",
+          dragon: "darkslateblue",
+          dark: "darkgray",
+          steel: "dimgray",
+          fairy: "pink",
+        };
+        return typeColors[type.toLowerCase()] || "lightgray";
+      }
    
 
 
