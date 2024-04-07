@@ -4,7 +4,57 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pokedex</title>
-    
+    <style>
+        .pokemon-container {
+          display: grid;
+          grid-template-columns: repeat(5, 1fr);
+          gap: 20px;
+          padding: 20px;
+        }
+        .pokemon-card {
+          width: 200px;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          padding: 10px;
+          text-align: center;
+          box-sizing: border-box;
+          position: relative;
+        }
+        .pokemon-image {
+          width: 100px;
+          height: 100px;
+          margin: 0 auto 10px;
+          display: block;
+        }
+        .delete-button {
+          position: absolute;
+          top: 5px;
+          right: 5px;
+          background-color: red;
+          color: white;
+          border: none;
+          border-radius: 50%;
+          width: 20px;
+          height: 20px;
+          font-size: 12px;
+          cursor: pointer;
+        }
+        .edit-button {
+          position: absolute;
+          bottom: 5px;
+          right: 5px;
+          background-color: green;
+          color: white;
+          border: none;
+          border-radius: 5px;
+          padding: 5px;
+          font-size: 12px;
+          cursor: pointer;
+        }
+        .type-dropdown {
+          margin-bottom: 10px;
+        }
+      </style>
   </head>
   <body>
     <h1>The Pokedex</h1>
