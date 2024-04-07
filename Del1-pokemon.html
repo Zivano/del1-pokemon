@@ -84,9 +84,58 @@
           pokemonDisplay.appendChild(card);
         });
       }
+      // lage nytt pokemonkort funksjon
+      function createPokemonCard(name, sprite, type, containerId) {
+        const card = document.createElement("div");
+        card.classList.add("pokemon-card");
+        card.innerHTML = `
+            <h2>${name}</h2>
+            <p>Type: ${type}</p>
+            <img src="${sprite}" alt="Pokemon Sprite" class="pokemon-image">
+            <button onclick="addPokemon('${name}', '${sprite}', '${type}', '${containerId}')">SAVE</button>
+            <button class="delete-button" onclick="deletePokemon(this)">X</button>
+            <button class="edit-button" onclick="editPokemon(this)">Edit</button>
+        `;
 
+        card.style.backgroundColor = getColorForType(type);
+        return card;
+      }
+
+      // Vi legger til pokemon i lista vår
+      function addPokemon(name, sprite, type, containerId) {
+        const selectedPokemon = document.getElementById("selectedPokemon");
+        const currentPokemonCount =
+          selectedPokemon.querySelectorAll(".pokemon-card").length;
+
+        if (currentPokemonCount < 5) {
+          const card = createPokemonCard(name, sprite, type, containerId);
+          selectedPokemon.appendChild(card);
+
+          // funksjon for å fjerne kort, måtte google meg fremt til funksjonen .closest, 
+          //benyttet link: https://www.geeksforgeeks.org/jquery-closest-method/ for å lære mer om dette
+
+          const displayArea = document.getElementById(containerId);
+          const cardToRemove = card.closest(".pokemon-card");
+
+          if (displayArea.contains(cardToRemove)) {
+            displayArea.removeChild(cardToRemove);
+          }
+
+          // Fra timen om Localstorage i frontend studiet.
+          const customPokemon = { name, sprite, type };
+          saveCustomPokemon(customPokemon);
+        } else {
+          alert(
+            "Your party is full. Please remove one or more pokemon in your party if you wish to add this one - Professor Oak"
+          );
+        }
+      }
 
       
+   
+
+
+
     </script>
   </body>
 </html>
