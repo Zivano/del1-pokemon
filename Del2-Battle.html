@@ -140,7 +140,7 @@
             alert("Failed to fetch random Pokemon. Please try again later.");
           }
         }
-      
+
         renderPokemon(target) {
           const pokemon =
             target === "player" ? this.playerPokemon : this.enemyPokemon;
@@ -175,10 +175,29 @@
           container.appendChild(attacksContainer);
         }
 
-        
+         //litt hjelp av ChatGPT til å forstå hvordan man logfører pokemonens attack og health med this log. Fant også ut av hvordan
+        //forhindre at man kunne trykke på attack flere ganger fort for å gagne sin kamp med "this attacks enabled"
+        async attack(attacker, ability) {
+          this.attacksEnabled = false;
+          const attackerPokemon =
+            attacker === "player" ? this.playerPokemon : this.enemyPokemon;
+          const defenderPokemon =
+            attacker === "player" ? this.enemyPokemon : this.playerPokemon;
 
-        
-      }
+          this.log(
+            `${attackerPokemon.name.toUpperCase()} used ${ability.toUpperCase()}!`
+          );
+          await new Promise((resolve) => setTimeout(resolve, 1000));
+
+          const damage = Math.floor(Math.random() * 20) + 10;
+          defenderPokemon.hp = Math.max(defenderPokemon.hp - damage, 0);
+          this.updateHP(attacker === "player" ? "enemy" : "player");
+
+          this.log(
+            `${defenderPokemon.name.toUpperCase()} took ${damage} damage!`
+          );
+
+          
     </script>
   </body>
 </html>
