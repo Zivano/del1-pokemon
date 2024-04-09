@@ -140,6 +140,44 @@
             alert("Failed to fetch random Pokemon. Please try again later.");
           }
         }
+      
+        renderPokemon(target) {
+          const pokemon =
+            target === "player" ? this.playerPokemon : this.enemyPokemon;
+          const container = document.getElementById(target + "Pokemon");
+          container.innerHTML = `
+        <h2>${pokemon.name.toUpperCase()}</h2>
+        <p>Type: ${pokemon.types}</p>
+        <img src="${pokemon.sprite}" alt="Pokemon Sprite" class="pokemon-image">
+        <div class="hp-bar" style="width: ${pokemon.hp}%"></div>`;
+          if (pokemon.hp <= 20) {
+            container.querySelector(".hp-bar").classList.add("red");
+          }
+        }
+
+        renderAttacks(target) {
+          const pokemon =
+            target === "player" ? this.playerPokemon : this.enemyPokemon;
+          const container = document.getElementById(target + "Pokemon");
+          const attacksContainer = document.createElement("div");
+          attacksContainer.classList.add("attacks");
+          pokemon.abilities.forEach((ability) => {
+            const button = document.createElement("button");
+            button.textContent = ability.toUpperCase();
+            button.classList.add("attack-button");
+            button.addEventListener("click", () => {
+              if (this.attacksEnabled && target === "player") {
+                this.attack(target, ability);
+              }
+            });
+            attacksContainer.appendChild(button);
+          });
+          container.appendChild(attacksContainer);
+        }
+
+        
+
+        
       }
     </script>
   </body>
