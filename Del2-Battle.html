@@ -121,7 +121,7 @@
             if (!response.ok) {
               throw new Error("sorry, pokemon is asleep!..");
             }
-            //Fra API timen
+            //Fra API timen//
             const data = await response.json();
             const abilities = data.moves
               .slice(0, 4)
@@ -141,7 +141,6 @@
           }
         }
       }
-      
     </script>
   </body>
 </html>
