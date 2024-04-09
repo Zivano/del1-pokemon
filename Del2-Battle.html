@@ -1,58 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pokemon battle</title>
-</head>
-<body>
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"rel="stylesheet"/>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
 
-  <style>
-    body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      height: 600px;
-      margin: 0;
-      font-family: "Press Start 2P", Arial, sans-serif;
-      background-image: url("assets/pokestadium.jpeg");
-      background-size: cover;
-      background-repeat: no-repeat;
-    }
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        height: 600px;
+        margin: 0;
+        font-family: "Press Start 2P", Arial, sans-serif;
+        background-image: url("assets/pokestadium.jpeg");
+        background-size: cover;
+        background-repeat: no-repeat;
+      }
 
-    h1 {
-      margin-bottom: 10px;
-      padding-top: 30px;
-      color: aliceblue;
-    }
+      h1 {
+        margin-bottom: 10px;
+        padding-top: 30px;
+        color: aliceblue;
+      }
 
-    .fight-text {
-      text-align: center;
-      padding: 20px;
-      background-color: aliceblue;
-      margin-bottom: 20px;
-    }
+      .fight-text {
+        text-align: center;
+        padding: 20px;
+        background-color: aliceblue;
+        margin-bottom: 20px;
+      }
 
-    .pokemon-container {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 360px;
-      padding: 20px;
-    }
+      .pokemon-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 360px;
+        padding: 20px;
+      }
 
-    .pokemon-card {
-      width: 220px;
-      border: 2px solid #000000;
-      border-radius: 5px;
-      padding: 10px;
-      text-align: center;
-      background-color: rgba(252, 253, 247, 0.746);
-      width: 100px;
-      height: 100px;
-      margin: 0 auto 10px;
-      display: block;
+      .pokemon-card {
+        width: 220px;
+        border: 2px solid #000000;
+        border-radius: 5px;
+        padding: 10px;
+        text-align: center;
+        background-color: rgba(252, 253, 247, 0.746);
+        width: 100px;
+        height: 100px;
+        margin: 0 auto 10px;
+        display: block;
       }
 
       .hp-bar {
@@ -76,8 +77,9 @@
         font-family: Arial, Helvetica, sans-serif;
         margin-top: 10px;
       }
-</style>
+    </style>
   </head>
+
   <body>
     <h1>Pokemon Battle</h1>
     <div class="fight-text"></div>
@@ -138,10 +140,7 @@
             alert("Failed to fetch random Pokemon. Please try again later.");
           }
         }
-    }
-
+      }
     </script>
-
-
-</body>
+  </body>
 </html>
