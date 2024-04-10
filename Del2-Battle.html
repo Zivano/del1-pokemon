@@ -197,7 +197,75 @@
             `${defenderPokemon.name.toUpperCase()} took ${damage} damage!`
           );
 
-          
+          await new Promise((resolve) => setTimeout(resolve, 1000));
+
+          if (defenderPokemon.hp === 0) {
+            this.log(`${defenderPokemon.name.toUpperCase()} fainted!`);
+            await new Promise((resolve) => setTimeout(resolve, 1000));
+
+            if (attacker === "player") {
+              this.enemyPokemon = await this.fetchRandomPokemon();
+              this.renderPokemon("enemy");
+              this.renderAttacks("enemy");
+              this.startTurn("enemy");
+              this.winCount++;
+              if (this.winCount >= 2) {
+                this.handleGameOver(true);
+                return;
+              }
+            } else {
+              this.playerPokemon = await this.fetchRandomPokemon();
+              this.renderPokemon("player");
+              this.renderAttacks("player");
+              this.startTurn("player");
+              this.lossCount++;
+              if (this.lossCount === 2) {
+                this.handleGameOver(false);
+                return;
+              }
+            }
+          } else {
+            this.startTurn(attacker === "player" ? "enemy" : "player");
+          }
+        }
+        //inspirert fra arbeidskrav 1- dragespillet.
+        startTurn(player) {
+          this.currentTurn = player;
+          this.log(`${player.toUpperCase()}'s turn!`);
+          if (player === "enemy") {
+            this.enemyAttack();
+          } else {
+            this.attacksEnabled = true;
+          }
+        }
+
+        enemyAttack() {
+          const randomIndex = Math.floor(
+            Math.random() * this.enemyPokemon.abilities.length
+          );
+          const ability = this.enemyPokemon.abilities[randomIndex];
+          this.attack("enemy", ability);
+        }
+
+        log(message) {
+          this.logElement.textContent = message;
+        }
+        // viktig i denne oppgaven å ha oversikt over energien til hver pokemon.her er hP bar oppdatert etter hver tur
+        //blir også rød når den er nære på å tape.
+        updateHP(target) {
+          const pokemon =
+            target === "player" ? this.playerPokemon : this.enemyPokemon;
+          const container = document.getElementById(target + "Pokemon");
+          const hpPercentage = (pokemon.hp / pokemon.maxHp) * 100;
+          container.querySelector(".hp-bar").style.width = `${hpPercentage}%`;
+          if (pokemon.hp <= 20) {
+            container.querySelector(".hp-bar").classList.add("red");
+          } else {
+            container.querySelector(".hp-bar").classList.remove("red");
+          }
+        }
+
+
     </script>
   </body>
 </html>
