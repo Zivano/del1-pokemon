@@ -50,6 +50,8 @@
         padding: 10px;
         text-align: center;
         background-color: rgba(252, 253, 247, 0.746);
+      }
+      .pokemon-image {
         width: 100px;
         height: 100px;
         margin: 0 auto 10px;
@@ -175,7 +177,7 @@
           container.appendChild(attacksContainer);
         }
 
-         //litt hjelp av ChatGPT til å forstå hvordan man logfører pokemonens attack og health med this log. Fant også ut av hvordan
+        //litt hjelp av ChatGPT til å forstå hvordan man logfører pokemonens attack og health med this log. Fant også ut av hvordan
         //forhindre at man kunne trykke på attack flere ganger fort for å gagne sin kamp med "this attacks enabled"
         async attack(attacker, ability) {
           this.attacksEnabled = false;
@@ -264,8 +266,41 @@
             container.querySelector(".hp-bar").classList.remove("red");
           }
         }
+        //viktig del av koden som avgjør hva som skjer om tap/vinn samt alerts rundt dette
+        handleGameOver(playerWon) {
+          if (playerWon) {
+            this.winCount++;
+            if (this.winCount >= 2) {
+              alert("Yay! You won the Pokemon battle!");
+            } else {
+              alert("You won this round!");
+            }
+          } else {
+            this.lossCount++;
+            if (this.lossCount >= 2) {
+              alert("You lost the Pokemon battle!");
+            } else {
+              alert("You lost this round!");
+            }
+          }
+          const playAgain = confirm("Do you want to play again?");
+          if (playAgain) {
+            this.resetGame();
+          } else {
+            alert("Thanks for playing!");
+            this.attacksEnabled = false;
+          }
+        }
 
+        resetGame() {
+          this.winCount = 0;
+          this.lossCount = 0;
+          this.init();
+        }
+      }
 
+      const battle = new PokemonBattle();
+      battle.init();
     </script>
   </body>
 </html>
